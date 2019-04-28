@@ -31,4 +31,13 @@ Explanation: The answer is "wke", with the length of 3.
 
 class Solution:
     def lengthOfLongestSubString(self, s):
-        
+        n, ans = len(s), 0
+        char_index = {}
+        i, j = 0, 0
+        while j<n:
+            if s[j] in char_index:
+                i = max(char_index[s[j]]+1, i)
+            ans = max(ans, j-i+1)
+            char_index[s[j]] = j # update the char_index
+            j += 1
+        return ans
